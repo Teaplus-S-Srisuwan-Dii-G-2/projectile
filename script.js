@@ -124,10 +124,8 @@ function showDetail(data){
                           Episodes : ${episodes} <br>
                           Rated : ${rated} <br>
                           Score : ${score} <br>
-                          Url : ${url} <br>
+                          Url :<a class="aa" href="${url}" >${url}</a><br>
                           ${synopsis}`
-
-
 
     let row2 = document.createElement('div')
     row2.classList.add('row')
@@ -162,6 +160,7 @@ function showDetail(data){
 document.getElementById('submit').addEventListener('click', function (e) {
     var search = document.getElementById('search').value
     console.log(search)
+    document.getElementById('outtext').innerHTML = `Result of ${search}`
     output1.innerHTML=''
     fetch(`https://api.jikan.moe/v3/search/anime?q=${search}`)
         .then((response) => {
@@ -208,8 +207,7 @@ function addcard(movie) {
             alldata={id,movie}
             console.log(alldata)
             addtoMylistToDB(alldata)
-            output1.innerHTML=''
-            onLoad()
+            
         }
     })
     output1.appendChild(Allmight)
@@ -232,3 +230,9 @@ function addtoMylistToDB(al) {
         
     })
 }
+
+document.getElementById('showmema').addEventListener('click', (event) => {
+    document.getElementById('outtext').innerHTML = `My anime List`
+    output1.innerHTML=''
+    onLoad()
+})
