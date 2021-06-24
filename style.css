@@ -16,6 +16,7 @@ h3.h1{
   background-color: rgba(211, 211, 211, 0.178);
   padding: 1rem;
   border-radius: 5px;
+  margin-bottom: 3rem;
 }
 
 a.aa{
@@ -32,10 +33,39 @@ img.index{
   margin: auto;
   margin-bottom: 1.5rem;
   padding: 0;
-  border: solid rgb(255, 153, 0) 7.5px;
+  border: solid gray 7.5px;
   border-radius: 12px;
 }
 
 h2.gg,h3.gg{
+  text-align: center;
+}
+
+.bi-facebook{
+  display: inline;
+  margin-right: 2px;
+}
+
+.bi-twitter{
+  display: inline;
+  margin-right: 2px;
+}
+
+.bi-Pinterest{
+  margin-right: 2px;
+}
+
+.bi-google{
+  display: inline;
+  margin-right: 2px;
+}
+
+h5{
+  display: inline;
+  margin-right: 10px;
+
+}
+
+.footer{
   text-align: center;
 }
