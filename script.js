@@ -160,7 +160,7 @@ function showDetail(data){
 document.getElementById('submit').addEventListener('click', function (e) {
     var search = document.getElementById('search').value
     console.log(search)
-    document.getElementById('outtext').innerHTML = `Result of ${search}`
+    document.getElementById('outtext').innerHTML = `Result of " ${search} "`
     output1.innerHTML=''
     fetch(`https://api.jikan.moe/v3/search/anime?q=${search}`)
         .then((response) => {
@@ -235,4 +235,14 @@ document.getElementById('showmema').addEventListener('click', (event) => {
     document.getElementById('outtext').innerHTML = `My anime List`
     output1.innerHTML=''
     onLoad()
+})
+
+document.getElementById('Home').addEventListener('click', (event) => {
+    document.getElementById('outtext').innerHTML = `P'Tou Anime.com`
+    output1.innerHTML= `<div class="row d-flex " id="output1">
+    <img src="01index.jfif" alt="" class="index">
+    <h2 class="gg">สถิตในดวงใจตราบนิจนิรันดร์</h2>
+    <h3 class="gg">พ่อผู้เสด็จสู่สวรรคาลัย</h3>
+    </div>`
+
 })
