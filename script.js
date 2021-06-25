@@ -1,4 +1,4 @@
-var output1 = document.getElementById('output1')
+var output = document.getElementById('output')
 var id = 632110341
 // ----------------------------------- Mylist Page -----------------------------------------------------------------------------------------------\\
 
@@ -8,6 +8,7 @@ function addcardOnMylist(data) {
 
     let one = document.createElement('div')
     one.classList.add("card")
+    one.classList.add("shadow")
 
     let img = document.createElement('img')
     img.classList.add("card-img-top")
@@ -24,24 +25,24 @@ function addcardOnMylist(data) {
     let button = document.createElement('button')
     button.classList.add('btn')
     button.classList.add('btn-success')
-    button.setAttribute('type','button')
+    button.setAttribute('type', 'button')
     button.innerText = 'detail'
-    button.addEventListener('click',function(){
-        output1.innerHTML=''
+    button.addEventListener('click', function () {
+        output.innerHTML = ''
         showDetail(data)
     })
     let buttond = document.createElement('button')
     buttond.classList.add('btn')
     buttond.classList.add('btn-danger')
-    buttond.setAttribute('type','button')
+    buttond.setAttribute('type', 'button')
     buttond.innerText = 'delete'
-    buttond.addEventListener('click',function (){
+    buttond.addEventListener('click', function () {
         var r = confirm(`delete ${name} On MyList`);
         if (r == true) {
 
             deleteMovie(data.id)
-            output1.innerHTML=''
-        }        
+            output.innerHTML = ''
+        }
     })
 
     one.appendChild(img)
@@ -49,7 +50,7 @@ function addcardOnMylist(data) {
     one.appendChild(button)
     one.appendChild(buttond)
     Allmight.appendChild(one)
-    output1.appendChild(Allmight)
+    output.appendChild(Allmight)
 }
 function MyList(dataList) {
 
@@ -66,23 +67,23 @@ function onLoad() {
             MyList(data)
         })
 }
-function deleteMovie(id){
-    fetch(`https://se104-project-backend.du.r.appspot.com/movie?id=632110341&&movieId=${id}`,{
-        method :'DELETE'
+function deleteMovie(id) {
+    fetch(`https://se104-project-backend.du.r.appspot.com/movie?id=632110341&&movieId=${id}`, {
+        method: 'DELETE'
     }).then(response => {
-        if(response.status === 200){
+        if (response.status === 200) {
             return response.json()
-        }else {
+        } else {
             throw Error(response.statusText)
         }
-    }).then(data =>{
+    }).then(data => {
         alert(`${data.title} is now delete`)
         onLoad()
-    }).catch( error =>{
-        alert ('Error')
+    }).catch(error => {
+        alert('Error')
     })
 }
-function showDetail(data){
+function showDetail(data) {
     let overAll = document.createElement('div')
     overAll.classList.add("row")
     let Allmight = document.createElement('div')
@@ -90,12 +91,14 @@ function showDetail(data){
 
     let one = document.createElement('div')
     one.classList.add("card")
+    one.classList.add("shadow-lg")
 
     let img = document.createElement('img')
     img.classList.add("card-img-top")
+    img.classList.add("shadow-lg")
     let imgname = data.image_url
     img.setAttribute('src', imgname)
-    
+
 
     let inone = document.createElement('div')
     inone.classList.add("card-body")
@@ -104,11 +107,11 @@ function showDetail(data){
     let name = data.title
     H5.innerHTML = name
 
-    
+
     one.appendChild(img)
     Allmight.appendChild(one)
-     let txtName =document.createElement('div')
-     txtName.classList.add('col-9')
+    let txtName = document.createElement('div')
+    txtName.classList.add('col-9')
     let url = data.url
     let title = data.title
     let synopsis = data.synopsis
@@ -116,7 +119,7 @@ function showDetail(data){
     let episodes = data.episodes
     let score = data.score
     let rated = data.rated
-    
+
     let row1 = document.createElement('div')
     row1.classList.add('row')
     row1.innerHTML = ` Name : ${title} <br>
@@ -129,17 +132,19 @@ function showDetail(data){
 
     let row2 = document.createElement('div')
     row2.classList.add('row')
-    let col10=document.createElement('div')
+    row2.classList.add('align-items-end')
+    let col10 = document.createElement('div')
     col10.classList.add('col-10')
-    let col2=document.createElement('div')
+    let col2 = document.createElement('div')
     col2.classList.add('col-2')
+    col2.classList.add('align-self-end')
     let button = document.createElement('button')
     button.classList.add('btn')
     button.classList.add('btn-success')
-    button.setAttribute('type','button')
+    button.setAttribute('type', 'button')
     button.innerText = 'Back'
-    button.addEventListener('click',function (){
-        output1.innerHTML=''
+    button.addEventListener('click', function () {
+        output.innerHTML = ''
         onLoad()
     })
 
@@ -150,7 +155,7 @@ function showDetail(data){
     txtName.appendChild(row2)
     overAll.appendChild(Allmight)
     overAll.appendChild(txtName)
-    output1.appendChild(overAll)
+    output.appendChild(overAll)
 
 }
 
@@ -161,7 +166,7 @@ document.getElementById('submit').addEventListener('click', function (e) {
     var search = document.getElementById('search').value
     console.log(search)
     document.getElementById('outtext').innerHTML = `Result of " ${search} "`
-    output1.innerHTML=''
+    output.innerHTML = ''
     fetch(`https://api.jikan.moe/v3/search/anime?q=${search}`)
         .then((response) => {
             console.log('not found')
@@ -184,6 +189,7 @@ function addcard(movie) {
 
     let one = document.createElement('div')
     one.classList.add("card")
+    one.classList.add("shadow")
 
     let img = document.createElement('img')
     img.classList.add("card-img-top")
@@ -204,14 +210,16 @@ function addcard(movie) {
         console.log(data)
         var r = confirm(`Add ${name} to MyList`);
         if (r == true) {
-            alldata={id,movie}
+            alldata = { id, movie }
             console.log(alldata)
             addtoMylistToDB(alldata)
-            
+
         }
     })
-    output1.appendChild(Allmight)
+    output.appendChild(Allmight)
+
 }
+
 function addtoMylistToDB(al) {
     fetch(`https://se104-project-backend.du.r.appspot.com/movies`, {
         method: 'POST',
@@ -227,19 +235,19 @@ function addtoMylistToDB(al) {
         }
     }).then(data => {
         console.log(data)
-        
+
     })
 }
 
 document.getElementById('showmema').addEventListener('click', (event) => {
     document.getElementById('outtext').innerHTML = `My anime List`
-    output1.innerHTML=''
+    output.innerHTML = ''
     onLoad()
 })
 
 document.getElementById('Home').addEventListener('click', (event) => {
     document.getElementById('outtext').innerHTML = `P'Tou Anime.com`
-    output1.innerHTML= `<div class="row d-flex " id="output1">
+    output.innerHTML = `<div class="row d-flex " id="output1">
     <img src="01index.jfif" alt="" class="index">
     <h2 class="gg">สถิตในดวงใจตราบนิจนิรันดร์</h2>
     <h3 class="gg">พ่อผู้เสด็จสู่สวรรคาลัย</h3>

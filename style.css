@@ -69,3 +69,12 @@ h5{
 .footer{
   text-align: center;
 }
+
+a.nav-link{
+  font-family: Verdana;
+  font-style: italic;
+}
+
+button.btn-success{
+  margin-top: 5rem;
+}
